@@ -2,58 +2,85 @@
 import 'package:flutter/material.dart';import 'package:flutter/material.dart';
 import 'package:learn_bloc/presentation/components/theme.dart';
 
-class Login extends StatelessWidget {
-  const Login({super.key});
+class Login extends StatefulWidget {
+  const Login({Key? key}) : super(key: key);
+
+  @override
+  _LoginState createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
+  String? user;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: clr(4),
-      appBar: AppBar(
-        title: const Text('Login'),
-        backgroundColor: clr(1),
-      ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(40.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            TextField(
-              decoration: InputDecoration(
-                labelText: 'Email',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8),
-                ),
+            SizedBox(height: 150),
+            Text(
+              'Login to Cura',
+              style: TextStyle(
+                color: clr(1),
+                fontWeight: FontWeight.bold,
+                fontSize: 30,
               ),
             ),
-            const SizedBox(height: 16),
-            TextField(
-              decoration: InputDecoration(
-                labelText: 'Password',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8),
+            SizedBox(height: 16),
+            buildCustomField("Email"),
+            SizedBox(height: 20),
+            buildCustomField("Password"),
+            SizedBox(height: 30),
+            Center(
+              child: ElevatedButton(
+                onPressed: () {
+                  // Handle login logic
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: clr(3),
+                  padding: EdgeInsets.symmetric(vertical: 10),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
                 ),
-              ),
-              obscureText: true,
-            ),
-            const SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: () {
-                // Handle login
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: clr(1),
-                padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  child: Text(
+                    "Login",
+                    style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                  ),
                 ),
-              ),
-              child: const Text(
-                'Login',
-                style: TextStyle(fontSize: 20, color: Colors.white),
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget buildCustomField(String hintText) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(50),
+        border: Border.all(color: const Color.fromARGB(255, 199, 194, 194)),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        child: TextFormField(
+          decoration: InputDecoration(
+            filled: true,
+            fillColor: clr(5),
+            hintText: hintText,
+            hintStyle: TextStyle(color: const Color.fromARGB(255, 199, 194, 194)),
+            border: InputBorder.none,
+            contentPadding: EdgeInsets.zero,
+          ),
+          style: TextStyle(color: Colors.black),
         ),
       ),
     );

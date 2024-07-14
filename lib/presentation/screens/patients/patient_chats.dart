@@ -7,7 +7,7 @@ import 'package:learn_bloc/presentation/screens/patients/patient_home.dart';
 import 'package:learn_bloc/presentation/screens/patients/profile.dart';
 
 class PatientChats extends StatelessWidget {
-  PatientChats({super.key});
+  const PatientChats({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,17 +25,29 @@ class PatientChats extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.person),
             onPressed: () {
-              // Navigate to profile screen
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ProfileScreen(
+                    profileName: "username",
+                    profileImagePath: 'assets/profile_image.png',
+                    appointments: [
+                      {'doctorName': 'Dr. mohamed ali', 'appointmentDate': '2024-07-13'},
+                      {'doctorName': 'Dr. mohamed', 'appointmentDate': '2024-07-14'},
+                    ],
+                  ),
+                ),
+              );
             },
           ),
         ],
       ),
       body: ListView.builder(
-        itemCount: 10, // Replace with your dynamic chat count
+        itemCount: 10, ////////
         itemBuilder: (context, index) {
           return ListTile(
             title: Text(
-              'Chat ${index + 1}', // Replace with your dynamic chat title
+              'Chat ${index + 1}', //////////////
               style: TextStyle(color: clr(1)),
             ),
             subtitle: Text(
@@ -58,19 +70,12 @@ class PatientChats extends StatelessWidget {
         onTap: (index) {
           switch (index) {
             case 0:
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => PatientHome()),
-              );
+              Navigator.pushReplacementNamed(context, '/patienthome');
               break;
             case 1:
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => PatientChats()),
-              );
               break;
             case 2:
-              Navigator.pushReplacement(
+              Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) => ProfileScreen(

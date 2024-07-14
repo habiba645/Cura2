@@ -3,10 +3,8 @@ import 'package:flutter/material.dart';import 'package:flutter/material.dart';
 import 'package:learn_bloc/presentation/components/customappbar.dart';
 import 'package:learn_bloc/presentation/components/customnavigatorbar.dart';
 import 'package:learn_bloc/presentation/components/theme.dart';
-import 'package:learn_bloc/presentation/screens/doctor/DoctorProfileScreen.dart';
-import 'package:learn_bloc/presentation/screens/patients/patient_chats.dart';
-import 'package:learn_bloc/presentation/screens/patients/patient_home.dart';
 import 'package:learn_bloc/presentation/screens/patients/profile.dart';
+import 'package:learn_bloc/presentation/screens/patients/regestration.dart';
 
 class SearchAndBookScreen extends StatelessWidget {
   final String username;
@@ -20,7 +18,7 @@ class SearchAndBookScreen extends StatelessWidget {
       appBar: CustomAppBar(
         title: "Search and Book",
         profileName: username,
-        profileImagePath: 'assets/profile_image.png',  // This should be dynamic
+        profileImagePath: 'doctor_16775995.png', // This should be dynamic
         appointments: [
           {'doctorName': 'Dr. mohamed ali', 'appointmentDate': '2024-07-13'},
           {'doctorName': 'Dr. mohamed', 'appointmentDate': '2024-07-14'},
@@ -60,21 +58,21 @@ class SearchAndBookScreen extends StatelessWidget {
                 children: [
                   buildDoctorCard(
                     'Dr. mohamed',
-                    'assets/doctor1.jpg',
+                    'doctor_16775995.png',
                     'Cardiologist',
                     context,
                   ),
                   SizedBox(width: 16),
                   buildDoctorCard(
                     'Dr. mohamed ali',
-                    'assets/doctor2.jpg',
+                    'doctor_16775995.png',
                     'Neurologist',
                     context,
                   ),
                   SizedBox(width: 16),
                   buildDoctorCard(
                     'Dr. moh ali',
-                    'assets/doctor3.jpg',
+                    'doctor_16775995.png',
                     'Pediatrician',
                     context,
                   ),
@@ -87,24 +85,19 @@ class SearchAndBookScreen extends StatelessWidget {
       bottomNavigationBar: CustomBottomNavigationBar(
         currentIndex: 1,
         onTap: (index) {
-          /////////////
           switch (index) {
             case 0:
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => PatientHome()),
-              );
+              Navigator.pushReplacementNamed(context, '/patienthome');
               break;
             case 1:
-              
               break;
             case 2:
-              Navigator.pushReplacement(
+              Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) => ProfileScreen(
                     profileName: username,
-                    profileImagePath: 'assets/profile_image.png', // This should be dynamic
+                    profileImagePath: 'doctor_16775995.png', // This should be dynamic
                     appointments: [
                       {'doctorName': 'Dr. mohamed ali', 'appointmentDate': '2024-07-13'},
                       {'doctorName': 'Dr. mohamed', 'appointmentDate': '2024-07-14'},
@@ -121,12 +114,12 @@ class SearchAndBookScreen extends StatelessWidget {
 
   Widget buildDoctorCard(String name, String imagePath, String specialty, BuildContext context) {
     return GestureDetector(
-      // onTap: () {
-      //   Navigator.push(
-      //     context,
-      //     MaterialPageRoute(builder: (context) => DoctorProfileScreen(name: name)),
-      //   );
-      // },
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => Registeration(doctorName: name)),
+        );
+      },
       child: Container(
         width: 120,
         decoration: BoxDecoration(
@@ -163,6 +156,16 @@ class SearchAndBookScreen extends StatelessWidget {
                 color: clr(1),
               ),
               textAlign: TextAlign.center,
+            ),
+            SizedBox(height: 8),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Registeration(doctorName: name)),
+                );
+              },
+              child: Text('Book'),
             ),
           ],
         ),

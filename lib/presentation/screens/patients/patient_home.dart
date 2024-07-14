@@ -9,7 +9,7 @@ import 'package:learn_bloc/presentation/screens/patients/profile.dart';
 import 'package:learn_bloc/presentation/screens/patients/search.dart';
 
 class PatientHome extends StatelessWidget {
-  PatientHome({super.key});
+  PatientHome({super.key, required String username});
   String username = "username";
 
   @override
@@ -55,7 +55,7 @@ class PatientHome extends StatelessWidget {
         onTap: (index) {
           switch (index) {
             case 0:
-              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => PatientHome()));
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => PatientHome(username: 'ghjklhg',)));
               break;
             case 1:
               Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => PatientChats()));
@@ -77,11 +77,11 @@ class PatientHome extends StatelessWidget {
   }
 }
   void navigateToChatBotScreen(BuildContext context) {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => ChatBotScreen(username: "ghj")));
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ChatBotScreen(username: "ghj")));
   }
 
   void navigateToSearchAndBookScreen(BuildContext context) {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => SearchAndBookScreen(username: "jhdxfg")));
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => SearchAndBookScreen(username: "jhdxfg")));
   }
 
  Widget buildCard(String title, String description, String buttonText, VoidCallback onPressed) {

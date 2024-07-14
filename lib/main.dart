@@ -1,17 +1,17 @@
 // main.dart
 import 'package:flutter/material.dart';import 'package:flutter/material.dart';
+import 'package:learn_bloc/presentation/screens/doctor/AImodels/ai_models.dart';
 import 'package:learn_bloc/presentation/screens/patients/patient_chats.dart';
 import 'package:learn_bloc/presentation/screens/patients/patient_home.dart';
 import 'package:learn_bloc/presentation/screens/patients/search.dart';
 import 'package:learn_bloc/presentation/screens/signup.dart';
-import 'package:learn_bloc/presentation/screens/welcom.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,14 +19,14 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        useMaterial3: true,
+        primarySwatch: Colors.blue,
       ),
-      initialRoute: 'patienthome', 
+      initialRoute: '/patienthome',
       routes: {
-        'signup': (context) => SignUp(),
-        'patienthome': (context) => PatientHome(),
-        'patientchats': (context) => PatientChats(),
-        'searchandbook': (context) => SearchAndBookScreen(username: 'username'),
+        '/signup': (context) => SignUp(),
+        '/patienthome': (context) => PatientHome(username: 'ghyujk'),
+        '/patientchats': (context) => PatientChats(),
+        '/searchandbook': (context) => SearchAndBookScreen(username: 'username'),
       },
     );
   }

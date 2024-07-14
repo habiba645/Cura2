@@ -1,5 +1,8 @@
 // presentation/screens/doctor/DoctorProfileScreen.dart
-import 'package:flutter/material.dart';import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+import 'package:learn_bloc/presentation/components/doc_appbar.dart';
+import 'package:learn_bloc/presentation/components/doc_navbar.dart';
+import 'package:learn_bloc/presentation/components/theme.dart';
 
 class DoctorProfileScreen extends StatelessWidget {
   final String doctorName;
@@ -15,8 +18,11 @@ class DoctorProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Doctor Profile'),
+      appBar: DocAppBar(
+        title: 'Doctor Profile',
+        profileImagePath: profileImagePath,
+        doctorName: doctorName,
+        specialty: specialty,
       ),
       body: Center(
         child: Column(
@@ -43,10 +49,10 @@ class DoctorProfileScreen extends StatelessWidget {
               ),
             ),
             SizedBox(height: 20),
-            // Additional details like contact info or reviews can be added here
           ],
         ),
       ),
+      bottomNavigationBar: DoctorBottomNavigationBar(currentIndex: 3),
     );
   }
 }

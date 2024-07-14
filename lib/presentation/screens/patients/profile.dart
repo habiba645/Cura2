@@ -106,7 +106,7 @@ class ProfileScreen extends StatelessWidget {
             case 0:
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => PatientHome()),
+                MaterialPageRoute(builder: (context) => PatientHome(username: 'klmmmmml',)),
               );
               break;
             case 1:
